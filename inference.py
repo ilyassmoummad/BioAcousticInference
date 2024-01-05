@@ -8,14 +8,12 @@ import pandas as pd
 from tqdm import tqdm
 from torch.utils.data import TensorDataset, DataLoader
 from augmentations import RandomCrop, Resize, Compander
-from evaluation import evaluate
 from args import args
 
 def get_distance(proto_pos, neg_proto, query_set_out):
     prototypes = torch.stack([proto_pos, neg_proto]).squeeze(1)
     dists = torch.cdist(query_set_out, prototypes)
     return dists
-
 
 if __name__ == "__main__":
 
