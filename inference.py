@@ -87,6 +87,9 @@ if __name__ == "__main__":
 
     print(f"Resampling audio from {sr} Hz to {TARGET_SR} Hz")
     wav = resample(wav)
+    # if more than one channel, average
+    if wav.shape[0] > 1:
+        wav = wav.mean(dim=0, keepdim=True)
 
     print("Computing mel spectrogram")
     melspec = transform(wav)
