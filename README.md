@@ -15,7 +15,7 @@ Put the downloaded checkpoint file 'ckpt.pth' in the 'model/' folder
 
 Have a 'txt' annotation file with few annotations (as little as one) with the same name as the audio file and launch the following code (replace audio_path with the corresponding name):
 
-```python3 inference.py --audiopath audio_path``
+```python3 inference.py --audiopath audio_path```
 
 This code will create a new 'txt' file (with '_inference' as a suffix) with the inferred annotations
 
