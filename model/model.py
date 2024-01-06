@@ -63,10 +63,6 @@ class ResNet(nn.Module):
         self.keep_avg_pool = avg_pool
 
         self.pool = nn.AdaptiveMaxPool2d((8, 1))
-        if method in ['scl', 'ssl']:
-            self.lin = nn.Sequential(nn.Linear(2048, 2048), nn.ReLU(inplace=True), nn.Linear(2048, 512)) # 2048 = 256 * 8, the dimension of the latent space
-        else:
-            self.lin = nn.Linear(2048, num_classes)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -100,6 +96,4 @@ class ResNet(nn.Module):
 
         x = x.view(x.size(0), -1)
 
-        out = self.lin(x)
-        
-        return x, out
+        return x
