@@ -4,10 +4,12 @@ parser = argparse.ArgumentParser()
 
 # generic
 parser.add_argument("--device", type=str, default='cpu') #device to train on ['cpu', 'cuda', 'cuda:0', 'cuda:1', ...]
-parser.add_argument("--workers", type=int, default=4) #number of workers
+parser.add_argument("--workers", type=int, default=1) #number of workers
+parser.add_argument("--bs", type=int, default=1) #batch size
 
 # data
-parser.add_argument("--audiopath", type=str, default='') #path of audio file
+parser.add_argument("--audiopath", type=str) #path of audio file
+parser.add_argument("--annotpath", type=str) #path to annotation file
 
 # model checkpoint
 parser.add_argument("--ckpt", type=str, default='model/ckpt.pth') #path of (pretrained) model checkpoint 
