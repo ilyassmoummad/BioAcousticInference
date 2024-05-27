@@ -50,7 +50,7 @@ class BasicBlock(nn.Module):
 
 class ResNet(nn.Module):
 
-    def __init__(self, method='scl', block=BasicBlock, avg_pool=True, num_classes=46):
+    def __init__(self, block=BasicBlock, avg_pool=True):
         self.inplanes = 1
         super(ResNet, self).__init__()
 

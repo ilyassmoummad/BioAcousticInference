@@ -12,7 +12,7 @@ parser.add_argument("--audiopath", type=str) #path of audio file
 parser.add_argument("--annotpath", type=str) #path to annotation file
 
 # model checkpoint
-parser.add_argument("--ckpt", type=str, default='model/ckpt.pth') #path of (pretrained) model checkpoint 
+parser.add_argument("--ckpt", type=str, default='model/bioacoustics_model.pth') #path of (pretrained) model checkpoint 
 
 # few shot
 parser.add_argument("--nshot", type=int, default=5) #number of shots

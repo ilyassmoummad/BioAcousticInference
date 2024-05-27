@@ -8,6 +8,7 @@ import pandas as pd
 from tqdm import tqdm
 from torch.utils.data import TensorDataset, DataLoader
 from augmentations import RandomCrop, Resize, Compander
+import requests
 from args import args
 
 def get_distance(proto_pos, neg_proto, query_set_out):
@@ -28,7 +29,6 @@ if __name__ == "__main__":
     fps = TARGET_SR/HOP_MEL
     print(f"Frames per second: {fps} (= target sample rate {args.sr} Hz / hop length {HOP_MEL})")
     emb_dim = 2048 #  dimension of the latent space, check architecture in models.py
-    
 
     # Spectrogram
     mel = T.MelSpectrogram(sample_rate=args.sr, n_fft=args.nfft, hop_length=args.hoplen, f_min=args.fmin, f_max=args.fmax, n_mels=args.nmels)
@@ -208,7 +208,8 @@ if __name__ == "__main__":
 
     # Loading model
     print("Loading model..")
-    encoder = ResNet(method='scl')
+    encoder = ResNet()
+    open(CKPT, 'wb').write(requests.get('https://zenodo.org/records/11353694/files/bioacoustics_model.pth?download=1').content)
     ckpt = torch.load(CKPT, map_location=torch.device('cpu'))
     encoder.load_state_dict(ckpt['encoder'], strict=False)
     encoder = encoder.to(args.device)
